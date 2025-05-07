@@ -130,18 +130,18 @@ fun HomeScreen(navController: NavController){
             ) {
 
     Column(modifier = Modifier.fillMaxSize()
-        .background(newwhite)
+        .background(aqua)
         .verticalScroll(rememberScrollState()) // Enable to scroll
 
     ){
 
 
         Box{
-            //Card 1:blush
+            //Card 1:aqua
             Card (
-                modifier = Modifier.fillMaxWidth().height(350.dp),
+                modifier = Modifier.fillMaxWidth().height(300.dp),
                 shape = RoundedCornerShape(bottomStart = 150.dp, bottomEnd = 150.dp),
-                colors = CardDefaults.cardColors(PurpleGrey80)
+                colors = CardDefaults.cardColors(Color.White)
 
 
 
@@ -149,7 +149,7 @@ fun HomeScreen(navController: NavController){
 
 
                 Image(
-                    painter = painterResource(R.drawable.bush2),
+                    painter = painterResource(R.drawable.img_1),
                     contentDescription = "img",
                     modifier = Modifier.width(400.dp).height(200.dp).padding(start = 10.dp, top = 20.dp)
                 )

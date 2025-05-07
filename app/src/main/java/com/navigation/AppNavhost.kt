@@ -36,6 +36,18 @@ fun AppNavHost(
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
         }
+        composable(ROUT_MAKEUP) {
+            MakeupScreen(navController)
+        }
+        composable(ROUT_MASSAGE) {
+            MassageScreen(navController)
+        }
+        composable(ROUT_HAIR) {
+            HairScreen(navController)
+        }
+        composable(ROUT_NAILS) {
+            NailsScreen(navController)
+        }
     }
 }
 

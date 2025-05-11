@@ -16,7 +16,7 @@ import java.io.InputStream
 import kotlin.io.copyTo
 import kotlin.io.use
 
-class ProductViewModel(app: Application) : AndroidViewModel(app) {
+  class ProductViewModel(app: Application) : AndroidViewModel(app) {
 
     private val context = app.applicationContext
     private val productDao = ProductDatabase.getDatabase(app).productDao()

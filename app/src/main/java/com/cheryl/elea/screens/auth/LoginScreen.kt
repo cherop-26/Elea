@@ -27,8 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.cheryl.elea.R
 
-import com.navigation.ROUT_DASH
-import com.navigation.ROUT_ITEM
+
+import com.navigation.ROUT_HOME
+
 
 import com.navigation.ROUT_REGISTER
 import com.viewmodel.AuthViewModel
@@ -51,10 +52,10 @@ fun LoginScreen(
                 Toast.makeText(context, "Invalid Credentials", Toast.LENGTH_SHORT).show()
             } else {
                 if (user.role == "admin") {
-                    navController.navigate(ROUT_ITEM) {
+                    navController.navigate(ROUT_HOME) {
                     }
                 } else {
-                    navController.navigate(ROUT_DASH) { // use "when" function if conditions are many
+                    navController.navigate(ROUT_HOME) { // use "when" function if conditions are many
 
                     }
                 }

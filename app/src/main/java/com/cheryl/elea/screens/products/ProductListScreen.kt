@@ -33,12 +33,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
-import com.starglen.zawadimart.R
+import com.cheryl.elea.R
+import com.cheryl.elea.screens.splash.SplashScreen
 import com.viewmodel.ProductViewModel
 import com.model.Product
 import com.navigation.ROUT_ADD_PRODUCT
@@ -358,3 +361,5 @@ fun BottomNavigationBar1(navController: NavController) {
         )
     }
 }
+
+

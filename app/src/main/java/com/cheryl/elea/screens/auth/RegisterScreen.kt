@@ -1,4 +1,4 @@
-package com.starglen.zawadimart.ui.screens.auth
+package com.cheryl.elea.ui.screens.auth
 
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -25,7 +25,7 @@ import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.starglen.zawadimart.R
+import com.cheryl.elea.R
 import com.model.User
 import com.navigation.ROUT_LOGIN
 import com.viewmodel.AuthViewModel

@@ -28,7 +28,7 @@ import com.repository.UserRepository
 import com.starglen.zawadimart.ui.screens.auth.LoginScreen
 import com.starglen.zawadimart.ui.screens.products.AddProductScreen
 import com.starglen.zawadimart.ui.screens.products.EditProductScreen
-import com.starglen.zawadimart.ui.screens.products.ProductListScreen
+import com.cheryl.elea.ui.screens.products.ProductListScreen
 import com.viewmodel.AuthViewModel
 import com.viewmodel.ProductViewModel
 
@@ -38,7 +38,7 @@ import com.viewmodel.ProductViewModel
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_HAIR,
+    startDestination: String = ROUT_SPLASH,
     productViewModel: ProductViewModel = viewModel(),
 
 
@@ -58,6 +58,7 @@ fun AppNavHost(
         composable(ROUT_ABOUT) {
             AboutScreen(navController)
         }
+
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
         }
@@ -79,6 +80,7 @@ fun AppNavHost(
         composable(ROUT_LOCATION) {
             LocationScreen(navController)
         }
+
 
         //AUTHENTICATION
 
@@ -111,6 +113,7 @@ fun AppNavHost(
         composable(ROUT_PRODUCT_LIST) {
             ProductListScreen(navController, productViewModel)
         }
+
 
         composable(
             route = ROUT_EDIT_PRODUCT,

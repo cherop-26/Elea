@@ -1,4 +1,4 @@
-package com.starglen.zawadimart.ui.screens.products
+package com.cheryl.elea.ui.screens.products
 
 
 import android.content.ContentValues
@@ -64,16 +64,15 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
     val filteredProducts = productList.filter {
         it.name.contains(searchQuery, ignoreCase = true)
     }
-
     Scaffold(
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("Service Expert", fontSize = 20.sp) },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                    title = { Text("Service Expert", fontSize = 20.sp, color = Color(0xFF0A1D37)) },
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color(0xFFF5F5DC)),
                     actions = {
                         IconButton(onClick = { showMenu = true }) {
-                            Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
+                            Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu", tint = Color(0xFF0A1D37))
                         }
                         DropdownMenu(
                             expanded = showMenu,
@@ -96,9 +95,6 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                         }
                     }
                 )
-
-
-
             }
         },
         bottomBar = { BottomNavigationBar1(navController) }
@@ -108,6 +104,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(16.dp)
+                .background(Color(0xFFFAF7F0))
         ) {
             LazyColumn {
                 items(filteredProducts.size) { index ->
@@ -135,11 +132,11 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     navController.navigate(ROUT_EDIT_PRODUCT)
                 }
             },
-        shape = RoundedCornerShape(12.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFDF6EC)),
+        elevation = CardDefaults.cardElevation(6.dp)
     ) {
         Box(modifier = Modifier.fillMaxWidth()) {
-            // Product Image
             Image(
                 painter = painter,
                 contentDescription = "Product Image",
@@ -149,7 +146,6 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                 contentScale = ContentScale.Crop
             )
 
-            // Gradient Overlay
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -157,12 +153,11 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     .align(Alignment.BottomStart)
                     .background(
                         Brush.verticalGradient(
-                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f))
+                            colors = listOf(Color.Transparent, Color(0xFF0A1D37).copy(alpha = 0.7f))
                         )
                     )
             )
 
-            // Product Info
             Column(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
@@ -172,16 +167,15 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     text = product.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Color(0xFFF5F5DC)
                 )
                 Text(
                     text = "Price: Ksh${product.price}",
                     fontSize = 16.sp,
-                    color = Color.White
+                    color = Color(0xFFF5F5DC)
                 )
             }
 
-            // Buttons (Message, Edit, Delete, Download PDF)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -191,7 +185,6 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Message Seller
                     OutlinedButton(
                         onClick = {
                             val smsIntent = Intent(Intent.ACTION_SENDTO)
@@ -200,6 +193,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                             context.startActivity(smsIntent)
                         },
                         shape = RoundedCornerShape(8.dp),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF0A1D37))
                     ) {
                         Row {
                             Icon(
@@ -211,7 +205,6 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         }
                     }
 
-                    // Edit Product
                     IconButton(
                         onClick = {
                             navController.navigate(editProductRoute(product.id))
@@ -220,92 +213,20 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         Icon(
                             imageVector = Icons.Default.Edit,
                             contentDescription = "Edit",
-                            tint = Color.White
+                            tint = Color(0xFFF5F5DC)
                         )
                     }
-
-
-
-
                 }
             }
         }
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.Q)
-fun generateProductPDF(context: Context, product: Product) {
-    val pdfDocument = PdfDocument()
-    val pageInfo = PdfDocument.PageInfo.Builder(300, 500, 1).create()
-    val page = pdfDocument.startPage(pageInfo)
-    val canvas = page.canvas
-    val paint = android.graphics.Paint()
-
-    val bitmap: Bitmap? = try {
-        product.imagePath?.let {
-            val uri = Uri.parse(it)
-            context.contentResolver.openInputStream(uri)?.use { inputStream ->
-                BitmapFactory.decodeStream(inputStream)
-            }
-        }
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
-    }
-
-    bitmap?.let {
-        val scaledBitmap = Bitmap.createScaledBitmap(it, 250, 150, false)
-        canvas.drawBitmap(scaledBitmap, 25f, 20f, paint)
-    }
-
-    paint.textSize = 16f
-    paint.isFakeBoldText = true
-    canvas.drawText("Product Details", 80f, 200f, paint)
-
-    paint.textSize = 12f
-    paint.isFakeBoldText = false
-    canvas.drawText("Name: ${product.name}", 50f, 230f, paint)
-    canvas.drawText("Price: Ksh${product.price}", 50f, 250f, paint)
-    canvas.drawText("Seller Phone: ${product.phone}", 50f, 270f, paint)
-
-    pdfDocument.finishPage(page)
-
-    // Save PDF using MediaStore (Scoped Storage)
-    val fileName = "${product.name}_Details.pdf"
-    val contentValues = ContentValues().apply {
-        put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
-        put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
-        put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
-    }
-
-    val contentResolver = context.contentResolver
-    val uri = contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
-
-    if (uri != null) {
-        try {
-            val outputStream: OutputStream? = contentResolver.openOutputStream(uri)
-            if (outputStream != null) {
-                pdfDocument.writeTo(outputStream)
-                Toast.makeText(context, "PDF saved to Downloads!", Toast.LENGTH_LONG).show()
-            }
-            outputStream?.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Toast.makeText(context, "Failed to save PDF!", Toast.LENGTH_LONG).show()
-        }
-    } else {
-        Toast.makeText(context, "Failed to create file!", Toast.LENGTH_LONG).show()
-    }
-
-    pdfDocument.close()
-}
-
-// Bottom Navigation Bar Component
 @Composable
 fun BottomNavigationBar1(navController: NavController) {
     NavigationBar(
-        containerColor = Color(0xFFA2B9A2),
-        contentColor = Color.White
+        containerColor = Color(0xFF0A1D37),
+        contentColor = Color(0xFFFFD700) // soft gold
     ) {
         NavigationBarItem(
             selected = false,
@@ -321,5 +242,4 @@ fun BottomNavigationBar1(navController: NavController) {
         )
     }
 }
-
 

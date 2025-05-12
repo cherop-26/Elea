@@ -1,25 +1,21 @@
 package com.cheryl.elea.screens.hair
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +34,7 @@ fun HairScreen(navController: NavController) {
     var selectedIndex by remember { mutableStateOf(0) }
 
     val hairServices = listOf(
-        HairService("Haircut", "Precision haircuts tailored to your style.", R.drawable.haircut),
+        HairService("Haircut", "Precision haircuts tailored to your style.", R.drawable.hairbck2),
         HairService("Hair Coloring", "Vibrant color treatments and highlights.", R.drawable.hairbck2),
         HairService("Hair Styling", "Elegant styles for special occasions.", R.drawable.hairbck2),
         HairService("Keratin Treatment", "Smooth and straighten your hair.", R.drawable.hairbck2),
@@ -47,7 +43,7 @@ fun HairScreen(navController: NavController) {
         HairService("Hair Spa", "Relaxing treatment for healthy hair.", R.drawable.hairbck2),
         HairService("Blow Dry", "Quick and flawless blowouts.", R.drawable.hairbck2),
         HairService("Braiding", "Stylish and protective hair braids.", R.drawable.hairbck2),
-        HairService("Updo", "Elegant updos for events and weddings.", R.drawable.hairbck2)
+        HairService("Up do", "Elegant up dos for events and weddings.", R.drawable.hairbck2)
     )
 
     Scaffold(
@@ -65,23 +61,23 @@ fun HairScreen(navController: NavController) {
         bottomBar = {
 
             NavigationBar(
-                containerColor = navy
+                containerColor = Color.White
             ){
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    icon = { Icon(Icons.Default.Info, contentDescription = "Home",tint = navy) },
                     label = { Text("About") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ABOUT)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
+                    icon = { Icon(Icons.Default.AccountCircle, contentDescription = "Favorites",tint = navy) },
+                    label = { Text("Available Experts") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
 
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_PRODUCT_LIST)
                     }
                 )
 

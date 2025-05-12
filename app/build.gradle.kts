@@ -59,7 +59,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //compose functionality
-    implementation("androidx.navigation:navigation-ui:2.8.9")
+    implementation("androidx.navigation:navigation-ui:2.9.0")
     implementation("androidx.navigation:navigation-compose:2.9.0")
 
 

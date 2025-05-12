@@ -78,7 +78,7 @@ fun LoginScreen(
             exit = fadeOut(animationSpec = tween(1000))
         ) {
             Text(
-                text = "Welcome Back!",
+                text = "Karibu!",
                 fontSize = 40.sp,
                 fontFamily = FontFamily.Cursive
             )

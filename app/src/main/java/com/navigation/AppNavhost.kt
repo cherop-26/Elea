@@ -1,5 +1,7 @@
 package com.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,14 +30,19 @@ import com.starglen.zawadimart.ui.screens.products.AddProductScreen
 import com.starglen.zawadimart.ui.screens.products.EditProductScreen
 import com.starglen.zawadimart.ui.screens.products.ProductListScreen
 import com.viewmodel.AuthViewModel
+import com.viewmodel.ProductViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_SPLASH
-) {
+    startDestination: String = ROUT_HAIR,
+    productViewModel: ProductViewModel = viewModel(),
+
+
+    ) {
 
 
     val context = LocalContext.current
@@ -96,6 +103,26 @@ fun AppNavHost(
         }
 
 
+        // PRODUCTS
+        composable(ROUT_ADD_PRODUCT) {
+            AddProductScreen(navController, productViewModel)
+        }
+
+        composable(ROUT_PRODUCT_LIST) {
+            ProductListScreen(navController, productViewModel)
+        }
+
+        composable(
+            route = ROUT_EDIT_PRODUCT,
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val productId = backStackEntry.arguments?.getInt("productId")
+            if (productId != null) {
+                EditProductScreen(productId, navController, productViewModel)
+            }
+        }
 
 
-    }}
+
+
+    }}// end of nav host

@@ -69,7 +69,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("Products", fontSize = 20.sp) },
+                    title = { Text("Service Expert", fontSize = 20.sp) },
                     colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
                     actions = {
                         IconButton(onClick = { showMenu = true }) {
@@ -98,29 +98,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                 )
 
 
-                //Search Bar
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 12.dp, vertical = 8.dp),
-                    placeholder = { Text("Search products...") },
-                    singleLine = true,
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search",
-                            tint = Color.Gray
-                        )
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Color.Black,  // Border color when focused
-                        unfocusedBorderColor = Color.Gray, // Border color when not focused
-                        focusedTextColor = Color.Black,
-                        unfocusedTextColor = Color.DarkGray
-                    )
-                )
+
             }
         },
         bottomBar = { BottomNavigationBar1(navController) }
@@ -246,27 +224,9 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         )
                     }
 
-                    // Delete Product
-                    IconButton(
-                        onClick = { viewModel.deleteProduct(product) }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete",
-                            tint = Color.White
-                        )
-                    }
 
-                    // Download PDF
-                    IconButton(
-                        onClick = { generateProductPDF(context, product) }
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.baseline_filer_download_24),
-                            contentDescription = "",
-                            tint = Color.White
-                        )
-                    }
+
+
                 }
             }
         }

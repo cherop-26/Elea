@@ -132,7 +132,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
             .padding(vertical = 8.dp)
             .clickable {
                 if (product.id != 0) {
-                    navController.navigate(ROUT_EDIT_PRODUCT)
+                    navController.navigate(ROUT_PRODUCT_LIST)
                 }
             },
         shape = RoundedCornerShape(16.dp),

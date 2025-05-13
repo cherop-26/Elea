@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,10 +43,12 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.cheryl.elea.R
 import com.cheryl.elea.screens.splash.SplashScreen
+import com.cheryl.elea.ui.theme.nude
 import com.viewmodel.ProductViewModel
 import com.model.Product
 import com.navigation.ROUT_ADD_PRODUCT
 import com.navigation.ROUT_EDIT_PRODUCT
+import com.navigation.ROUT_HOME
 import com.navigation.ROUT_PRODUCT_LIST
 import com.navigation.editProductRoute
 import java.io.File
@@ -78,13 +81,8 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                             expanded = showMenu,
                             onDismissRequest = { showMenu = false }
                         ) {
-                            DropdownMenuItem(
-                                text = { Text("Product List") },
-                                onClick = {
-                                    navController.navigate(ROUT_PRODUCT_LIST)
-                                    showMenu = false
-                                }
-                            )
+
+
                             DropdownMenuItem(
                                 text = { Text("Add Product") },
                                 onClick = {
@@ -99,6 +97,8 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
         },
         bottomBar = { BottomNavigationBar1(navController) }
     ) { paddingValues ->
+
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -106,7 +106,10 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                 .padding(16.dp)
                 .background(Color(0xFFFAF7F0))
         ) {
+
+
             LazyColumn {
+                
                 items(filteredProducts.size) { index ->
                     ProductItem(navController, filteredProducts[index], viewModel)
                 }
@@ -175,7 +178,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     color = Color(0xFFF5F5DC)
                 )
             }
-
+            val mContext = LocalContext.current
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -189,7 +192,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         onClick = {
                             val smsIntent = Intent(Intent.ACTION_SENDTO)
                             smsIntent.data = "smsto:${product.phone}".toUri()
-                            smsIntent.putExtra("sms_body", "Hello Seller,...?")
+                            smsIntent.putExtra("sms_body", "Hello ${product.name},at the price of ${product.price}, I am would like to get the ........Service")
                             context.startActivity(smsIntent)
                         },
                         shape = RoundedCornerShape(8.dp),
@@ -198,39 +201,55 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         Row {
                             Icon(
                                 imageVector = Icons.Default.Send,
-                                contentDescription = "Message Seller"
+                                contentDescription = "Message Expert"
                             )
                             Spacer(modifier = Modifier.width(3.dp))
-                            Text(text = "Message Seller")
+                            Text(text = "Message Expert")
                         }
                     }
 
                     IconButton(
                         onClick = {
-                            navController.navigate(editProductRoute(product.id))
+                            val callIntent=Intent(Intent.ACTION_DIAL)
+                            callIntent.data="${product.phone}".toUri()
+                            mContext.startActivity(callIntent)
                         }
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Edit,
+                            imageVector = Icons.Default.Call,
                             contentDescription = "Edit",
                             tint = Color(0xFFF5F5DC)
                         )
-                    }
-                }
+
+                }// end of icon 1
+                    Spacer(modifier = Modifier.width(10.dp))
+                    IconButton(
+                        onClick = {
+                            val simToolKitLaunchIntent =
+                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ShoppingCart,
+                            contentDescription = "Edit",
+                            tint = Color(0xFFF5F5DC)
+                        )
+                    }// of icon 2
             }
         }
     }
-}
+}}
 
 @Composable
 fun BottomNavigationBar1(navController: NavController) {
     NavigationBar(
         containerColor = Color(0xFF0A1D37),
-        contentColor = Color(0xFFFFD700) // soft gold
+        contentColor = Color(0xFFF5F5DC) // soft gold
     ) {
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
+            onClick = { navController.navigate(ROUT_HOME) },
             icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
             label = { Text("Home") }
         )

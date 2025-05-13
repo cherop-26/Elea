@@ -7,8 +7,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -65,20 +67,20 @@ fun MakeupScreen(navController: NavController) {
                 containerColor = Color.White
             ){
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home",tint = navy) },
+                    icon = { Icon(Icons.Default.Info, contentDescription = "Home",tint = navy) },
                     label = { Text("About") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ABOUT)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites",tint = navy) },
-                    label = { Text("Favorites") },
+                    icon = { Icon(Icons.Default.AccountCircle, contentDescription = "Favorites",tint = navy) },
+                    label = { Text("Available Experts") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
 
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_PRODUCT_LIST)
                     }
                 )
 

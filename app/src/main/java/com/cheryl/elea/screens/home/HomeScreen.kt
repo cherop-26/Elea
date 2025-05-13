@@ -17,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
@@ -50,6 +51,7 @@ import com.cheryl.elea.R
 import com.cheryl.elea.ui.theme.navy
 import com.cheryl.elea.ui.theme.nude
 import com.navigation.ROUT_ABOUT
+import com.navigation.ROUT_CONTACT
 import com.navigation.ROUT_HAIR
 import com.navigation.ROUT_HOME
 import com.navigation.ROUT_MAKEUP
@@ -99,16 +101,16 @@ fun HomeScreen(navController: NavController){
                     label = { Text("About") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ABOUT)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.LocationOn, contentDescription = "Favorites",tint = navy) },
-                    label = { Text("Safety") },
+                    icon = { Icon(Icons.Default.Call, contentDescription = "Favorites",tint = navy) },
+                    label = { Text("Contact") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
 
-                        navController.navigate(ROUT_ABOUT)
+                        navController.navigate(ROUT_CONTACT)
                     }
 
 
@@ -154,7 +156,7 @@ fun HomeScreen(navController: NavController){
             ){
 
                 Image(
-                    painter = painterResource(R.drawable.banner),
+                    painter = painterResource(R.drawable.servicechoice),
                     contentDescription = "img",
                     modifier = Modifier.fillMaxSize(),
 

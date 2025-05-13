@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.cheryl.elea.R
 import com.navigation.ROUT_ADD_PRODUCT
+import com.navigation.ROUT_HOME
 import com.navigation.ROUT_PRODUCT_LIST
 import com.viewmodel.ProductViewModel
 
@@ -51,10 +52,10 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Add Product", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                title = { Text("Add Service Provider details", fontSize = 20.sp, fontWeight = FontWeight.Bold, color =Color(0xFFF5F5DC) ) },
+                colors = TopAppBarDefaults.mediumTopAppBarColors( Color(0xFF0A1D37)),
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { navController.navigate(ROUT_PRODUCT_LIST) }) {
                         Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
                     }
                 },
@@ -73,13 +74,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                                 showMenu = false
                             }
                         )
-                        DropdownMenuItem(
-                            text = { Text("Add Product") },
-                            onClick = {
-                                navController.navigate(ROUT_ADD_PRODUCT)
-                                showMenu = false
-                            }
-                        )
+
                     }
                 }
             )
@@ -99,8 +94,8 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Product Name") },
-                    leadingIcon = { Icon(painter = painterResource(R.drawable.baseline_dynamic_feed_24), contentDescription = "Name") },
+                    label = { Text("Service Expert Name") },
+                    leadingIcon = { Icon(painter = painterResource(R.drawable.profile), contentDescription = "Name") },
                     modifier = Modifier.fillMaxWidth()
                 )
 
@@ -110,7 +105,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 OutlinedTextField(
                     value = price,
                     onValueChange = { price = it },
-                    label = { Text("Product Price") },
+                    label = { Text("Service Price") },
                     leadingIcon = { Icon(painter = painterResource(R.drawable.baseline_architecture_24), contentDescription = "Price") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -135,21 +130,21 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 Box(
                     modifier = Modifier
                         .size(200.dp)
-                        .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
+                        .background(Color(0xFFF5F5DC), shape = RoundedCornerShape(10.dp))
                         .clickable { imagePicker.launch("image/*") },
                     contentAlignment = Alignment.Center
                 ) {
                     if (imageUri != null) {
                         Image(
                             painter = rememberAsyncImagePainter(model = imageUri),
-                            contentDescription = "Selected Image",
+                            contentDescription = "Selected logo",
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
                         )
                     } else {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(painter = painterResource(R.drawable.image), contentDescription = "Pick Image")
-                            Text("Tap to pick image", color = Color.DarkGray)
+                            Text("Tap to pick a Logo", color = Color.DarkGray)
                         }
                     }
                 }
@@ -167,7 +162,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                     },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(Color.LightGray)
+                    colors = ButtonDefaults.buttonColors(Color(0xFF0A1D37))
                 ) {
                     Text("Add Product", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
@@ -185,23 +180,10 @@ fun BottomNavigationBar(navController: NavController) {
     ) {
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
+            onClick = { navController.navigate(ROUT_HOME) },
             icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
             label = { Text("Home") }
         )
-        NavigationBarItem(
-            selected = false,
-            onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product") },
-            label = { Text("Add") }
-        )
 
-
-        NavigationBarItem(
-            selected = false,
-            onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
-            icon = { Icon(painter = painterResource(R.drawable.profile), contentDescription = "") },
-            label = { Text("Profile") }
-        )
     }
 }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -73,12 +74,12 @@ fun NailsScreen(navController: NavController) {
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites",tint = navy) },
+                    icon = { Icon(Icons.Default.AccountCircle, contentDescription = "Favorites",tint = navy) },
                     label = { Text("Available Experts") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
 
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_PRODUCT_LIST)
                     }
                 )
 

@@ -6,7 +6,7 @@ package com.navigation
     const val ROUT_HAIR = "hair"
     const val ROUT_NAILS = "nails"
     const val ROUT_MASSAGE = "massage"
-    const val ROUT_LOCATION = "location"
+    const val ROUT_CONTACT = "contact"
     const val ROUT_SPLASH = "splash"
     const val ROUT_APPOINTMENT = "appointment"
 

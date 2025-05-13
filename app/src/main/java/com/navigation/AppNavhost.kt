@@ -17,7 +17,7 @@ import com.cheryl.elea.screens.about.AboutScreen
 import com.cheryl.elea.screens.appointment.AppointmentScreen
 import com.cheryl.elea.screens.hair.HairScreen
 import com.cheryl.elea.screens.home.HomeScreen
-import com.cheryl.elea.screens.location.LocationScreen
+import com.cheryl.elea.screens.contact.ContactScreen
 import com.cheryl.elea.screens.makeup.MakeupScreen
 import com.cheryl.elea.screens.massage.MassageScreen
 import com.cheryl.elea.screens.nails.NailsScreen
@@ -77,8 +77,8 @@ fun AppNavHost(
         composable(ROUT_APPOINTMENT) {
             AppointmentScreen(navController)
         }
-        composable(ROUT_LOCATION) {
-            LocationScreen(navController)
+        composable(ROUT_CONTACT) {
+            ContactScreen(navController)
         }
 
 

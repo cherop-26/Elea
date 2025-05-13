@@ -80,7 +80,7 @@ fun MassageScreen(navController: NavController) {
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
 
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_PRODUCT_LIST)
                     }
                 )
 

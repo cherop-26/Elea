@@ -1,4 +1,5 @@
-package com.cheryl.elea.screens.about
+package com.cheryl.elea.screens.contact
+
 
 
 import androidx.compose.foundation.Image
@@ -24,7 +25,7 @@ val SoftGold = Color(0xFFCBA135)
 val Beige = Color(0xFFF5F5DC)
 
 @Composable
-fun AboutScreen(navController: NavController) {
+fun ContactScreen(navController: NavController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Beige
@@ -40,75 +41,64 @@ fun AboutScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.splash), // Replace with your logo
                 contentDescription = "App Logo",
                 modifier = Modifier
-                    .size(150.dp)
+                    .size(200.dp)
                     .padding(bottom = 16.dp)
             )
 
             // App Name
             Text(
                 text = "Elea Beauty Lounge",
-                fontSize = 26.sp,
+                fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 color = NavyBlue
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
-            // Description Card
-            Card(
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp),
-                elevation = CardDefaults.cardElevation(8.dp)
-            ) {
-                Column(modifier = Modifier.padding(20.dp)) {
-                    Text(
-                        text = "About Us",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = SoftGold
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = "At Elea , we believe in enhancing your natural beauty through luxurious experiences. Through a team of professionals who are passionate about delivering high-quality hair, nail, makeup, and massage services tailored to your needs, you can enjoy these services at the comfort of your home",
-                        fontSize = 16.sp,
-                        color = NavyBlue,
-                        lineHeight = 22.sp
-                    )
-                }
-            }
-
+            Text(
+                text = " To get more info on Elea, ",
+                fontSize = 25.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = SoftGold
+            )
+            Spacer(modifier = Modifier.height(20.dp))
             // Contact Info
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                 Text(
-                    text = "Contact Us",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = SoftGold
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "📍 Nairobi, Kenya",
-                    fontSize = 14.sp,
-                    color = NavyBlue
-                )
-                Spacer(modifier = Modifier.height(6.dp))
+                    text = "  contact us on:",
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = SoftGold)
+
+
+                            Spacer(modifier = Modifier.height(30.dp))
+
+
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "☎ +254 712 345678",
-                    fontSize = 14.sp,
+                    fontSize = 20.sp,
                     color = NavyBlue
                 )
-                Spacer(modifier = Modifier.height(6.dp))
+                Spacer(modifier = Modifier.height(30.dp))
+
+                Text(
+                    text = "  or",
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = SoftGold
+                )
+
+                            Spacer(modifier = Modifier.height(30.dp))
                 Text(
                     text = "📨 eleabeauty@gmail.com",
-                    fontSize = 14.sp,
+                    fontSize = 20.sp,
                     color = NavyBlue
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(60.dp))
 
             Button(
                 onClick = { navController.navigate(ROUT_HOME) },
@@ -122,6 +112,6 @@ fun AboutScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewAboutScreen() {
-    AboutScreen(navController = rememberNavController())
+fun PreviewContactScreen() {
+    ContactScreen(navController = rememberNavController())
 }

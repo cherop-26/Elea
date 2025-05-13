@@ -84,7 +84,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
 
 
                             DropdownMenuItem(
-                                text = { Text("Add Product") },
+                                text = { Text("Add Account") },
                                 onClick = {
                                     navController.navigate(ROUT_ADD_PRODUCT)
                                     showMenu = false
@@ -196,7 +196,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                             context.startActivity(smsIntent)
                         },
                         shape = RoundedCornerShape(8.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF0A1D37))
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFF5F5DC))
                     ) {
                         Row {
                             Icon(
@@ -211,7 +211,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     IconButton(
                         onClick = {
                             val callIntent=Intent(Intent.ACTION_DIAL)
-                            callIntent.data="${product.phone}".toUri()
+                            callIntent.data="tel:${product.phone}".toUri()
                             mContext.startActivity(callIntent)
                         }
                     ) {

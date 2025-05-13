@@ -156,9 +156,9 @@ fun HomeScreen(navController: NavController){
             ){
 
                 Image(
-                    painter = painterResource(R.drawable.servicechoice),
+                    painter = painterResource(R.drawable.banner),
                     contentDescription = "img",
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.width(1000.dp).height(1000.dp),
 
 
                 )

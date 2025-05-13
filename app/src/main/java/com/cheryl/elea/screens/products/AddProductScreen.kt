@@ -164,7 +164,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(Color(0xFF0A1D37))
                 ) {
-                    Text("Add Product", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                    Text("Add Account", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }

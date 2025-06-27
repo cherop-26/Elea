@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.cheryl.elea.R
+import com.cheryl.elea.ui.theme.softgold
 import com.navigation.ROUT_ADD_PRODUCT
 import com.navigation.ROUT_HOME
 import com.navigation.ROUT_PRODUCT_LIST
@@ -181,7 +182,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_HOME) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
+            icon = { Icon(Icons.Default.Home, contentDescription = "Product List",tint = softgold) },
             label = { Text("Home") }
         )
 

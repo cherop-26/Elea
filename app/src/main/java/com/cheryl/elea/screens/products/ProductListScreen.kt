@@ -44,6 +44,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.cheryl.elea.R
 import com.cheryl.elea.screens.splash.SplashScreen
 import com.cheryl.elea.ui.theme.nude
+import com.cheryl.elea.ui.theme.softgold
 import com.viewmodel.ProductViewModel
 import com.model.Product
 import com.navigation.ROUT_ADD_PRODUCT
@@ -250,13 +251,14 @@ fun BottomNavigationBar1(navController: NavController) {
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_HOME) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
-            label = { Text("Home") }
+            icon = { Icon(Icons.Default.Home, contentDescription = "Product List",tint = softgold) },
+            label = { Text("Home") },
+
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product") },
+            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product",tint = softgold) },
             label = { Text("Add") }
         )
     }

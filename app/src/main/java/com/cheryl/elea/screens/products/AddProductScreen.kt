@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.cheryl.elea.R
+import com.cheryl.elea.ui.theme.idealnavy
+import com.cheryl.elea.ui.theme.navy
 import com.cheryl.elea.ui.theme.softgold
 import com.navigation.ROUT_ADD_PRODUCT
 import com.navigation.ROUT_HOME
@@ -177,7 +179,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
 fun BottomNavigationBar(navController: NavController) {
     NavigationBar(
         containerColor = Color(0xFF6F6A72),
-        contentColor = Color.White
+        contentColor = idealnavy
     ) {
         NavigationBarItem(
             selected = false,
